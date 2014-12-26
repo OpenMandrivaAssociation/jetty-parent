@@ -1,9 +1,9 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:           jetty-parent
 Version:        19
-Release:        8.0%{?dist}
+Release:        11.1
 Summary:        Jetty parent POM file
-
+Group:		Development/Java
 
 License:        ASL 2.0 or EPL
 URL:            http://www.eclipse.org/jetty/
@@ -24,21 +24,17 @@ Jetty parent POM file
 
 %prep
 %setup -q -c -T
+cp -p %{SOURCE0} pom.xml
 cp -p %{SOURCE2} %{SOURCE3} .
 
+%build
+%mvn_build
+
 %install
-# poms
-install -d -m 755 %{buildroot}%{_mavenpomdir}
-install -pm 644 %{SOURCE0} \
-    %{buildroot}%{_mavenpomdir}/JPP-%{name}.pom
+%mvn_install
 
-%add_maven_depmap JPP-%{name}.pom
-
-%files
+%files -f .mfiles
 %doc epl-v10.html LICENSE-2.0.txt
-%{_mavenpomdir}/JPP-%{name}.pom
-%{_mavendepmapfragdir}/%{name}
-
 
 %changelog
 * Sat Aug 03 2013 Fedora Release Engineering <rel-eng@lists.fedoraproject.org> - 19-8
