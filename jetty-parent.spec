@@ -1,7 +1,7 @@
 %{?_javapackages_macros:%_javapackages_macros}
 Name:           jetty-parent
 Version:        19
-Release:        11.2
+Release:        11.3
 Summary:        Jetty parent POM file
 Group:		Development/Java
 
